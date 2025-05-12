@@ -4,12 +4,26 @@ import 'screens/store_screen.dart';
 import 'screens/favorites_screen.dart';
 import 'screens/hotshot_screen.dart';
 import 'screens/settings_screen.dart';
+import 'screens/portfolio_screen.dart';
+import 'screens/alerts_screen.dart';
 import 'providers/favorites_provider.dart';
+import 'providers/portfolio_provider.dart';
+import 'providers/alerts_provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => FavoritesProvider()..loadFavorites(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => FavoritesProvider()..loadFavorites(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PortfolioProvider()..loadPortfolio(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AlertsProvider()..loadAlerts(),
+        ),
+      ],
       child: CryptoCheckerApp(),
     ),
   );
@@ -25,6 +39,8 @@ class _CryptoCheckerAppState extends State<CryptoCheckerApp> {
   final List<Widget> _screens = [
     StoreScreen(),
     FavoritesScreen(),
+    PortfolioScreen(),
+    AlertsScreen(),
     HotshotScreen(),
     SettingsScreen(),
   ];
@@ -48,7 +64,9 @@ class _CryptoCheckerAppState extends State<CryptoCheckerApp> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Магазин'),
             BottomNavigationBarItem(icon: Icon(Icons.star), label: 'Избранное'),
-            BottomNavigationBarItem(icon: Icon(Icons.local_fire_department), label: '🔥Hot shot🔥'),
+            BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet), label: 'Портфель'),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Оповещения'),
+            BottomNavigationBarItem(icon: Icon(Icons.local_fire_department), label: '🔥Hot'),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Настройки'),
           ],
         ),
