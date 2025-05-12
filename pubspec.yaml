@@ -1,0 +1,24 @@
+name: crypto_checker
+description: A crypto asset tracker with animated UI and Hot Shot filtering.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.0
+  dio: ^5.0.0
+  fl_chart: ^0.55.1
+  lottie: ^2.2.0
+  provider: ^6.0.0
+  shared_preferences: ^2.0.15
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
