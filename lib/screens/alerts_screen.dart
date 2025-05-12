@@ -39,10 +39,10 @@ class _AlertsScreenState extends State<AlertsScreen> {
                         
                         return DropdownButtonFormField<String>(
                           value: _selectedAssetId,
-                          items: snapshot.data!.map((asset) {
-                            return DropdownMenuItem(
-                              value: asset['id'],
-                              child: Text(asset['name']),
+                          items: snapshot.data!.map<DropdownMenuItem<String>>((asset) {
+                            return DropdownMenuItem<String>(
+                              value: asset['id'] as String,
+                              child: Text(asset['name'] as String),
                             );
                           }).toList(),
                           onChanged: (value) {
@@ -65,7 +65,7 @@ class _AlertsScreenState extends State<AlertsScreen> {
                     ),
                     SizedBox(height: 16),
                     SegmentedButton<bool>(
-                      segments: [
+                      segments: const [
                         ButtonSegment(
                           value: true,
                           label: Text('Выше'),

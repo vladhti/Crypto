@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
 class PriceAlert {
@@ -36,7 +36,7 @@ class AlertsProvider extends ChangeNotifier {
     final alertsJson = prefs.getString('price_alerts');
     if (alertsJson != null) {
       final List<dynamic> decoded = json.decode(alertsJson);
-      _alerts = decoded.map((item) => PriceAlert.fromJson(item)).toList();
+      _alerts = decoded.map((item) => PriceAlert.fromJson(item as Map<String, dynamic>)).toList();
       notifyListeners();
     }
   }
